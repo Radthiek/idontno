@@ -64,15 +64,8 @@ const init = async () => {
     // This line is awesome by the way. Just sayin'.
     client.on(eventName, event.bind(null, client));
   });
-
-  // Generate a cache of client permissions for pretty perm names in commands.
-  client.levelCache = {};
-  for (let i = 0; i < client.config.permLevels.length; i++) {
-    const thisLevel = client.config.permLevels[i];
-    client.levelCache[thisLevel.name] = thisLevel.level;
-  }
-  
-  client.on('message', function(message) {
+	
+	client.on('message', function(message) {
 	const myID = "428285710588444694";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(prefix + "setname")) {
@@ -125,6 +118,13 @@ const init = async () => {
         });
     }
 });
+
+  // Generate a cache of client permissions for pretty perm names in commands.
+  client.levelCache = {};
+  for (let i = 0; i < client.config.permLevels.length; i++) {
+    const thisLevel = client.config.permLevels[i];
+    client.levelCache[thisLevel.name] = thisLevel.level;
+  }
 
   // Here we login the client.
   client.login(client.config.token);
